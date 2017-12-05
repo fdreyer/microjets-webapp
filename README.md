@@ -19,4 +19,4 @@ To start the program, simply run
 ./run.py
 ```
 
-The plots will then be available under http://localhost:5000.cp
+The plots will then be available under [http://localhost:5000](http://localhost:5000).
