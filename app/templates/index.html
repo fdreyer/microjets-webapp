@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <title>MicroJets</title>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet" />
+    <!-- <link href="{{ url_for('static', filename='jumbotron.css') }}" rel="stylesheet" /> -->
+    <link href="{{ url_for('static', filename='ie10-viewport-bug-workaround.css') }}" rel="stylesheet" />
+  </head>
+  
+  <body>
+    
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">MicroJets</h3>
+      </div>
+
+      <hr>
+      
+      <div class="row">
+        <div class="col-md-4">
+
+	  <h4> Select plot details </h4>
+	  <form action="{{ url_for('main') }}" method="post">
+	    {{ form.hidden_tag() }}
+	    
+	    <!-- {{ form.NLOline      }} -->
+	    <!-- {{ form.NLOmultline  }} -->
+	    <!-- {{ form.NLOLLRline   }} -->
+	    <!-- {{ form.NLOPSline    }} </p> -->
+            <!-- {{ form.NNLOline     }} -->
+            <!-- {{ form.NNLOmultline }} -->
+            <!-- {{ form.NNLOLLRline  }} -->
+	    <p>
+              {{ form.choice_R }}
+              {{ form.choice_rap }}
+              {{ form.choice_K }}
+            </p>
+            <p>
+	      Integrate over {{ form.choice_ptbin }}
+            </p>
+            <p>
+	      {{ form.choice_scalevar }} scale variation
+            </p>
+	      
+	    {{ form.choice_lines }}
+	    <hr style="height:0pt; visibility:hidden; margin-bottom:-10pt;" />
+	    
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    <input type="submit" value="Submit">
+          </form>
+	  <p>
+	    <a href="{{ url_for('form_prefill', lines = params.lines, R = params.R, highpt = params.highpt, ymin = params.ymin, K = params.K, narrowband = params.narrowband) }}">
+	      <small>link to these settings</small></a>
+	  </p>
+
+	  <br>	  
+
+	  <h4>Information</h4>
+	  <p>
+	    The fixed order predictions were obtained with
+	    <a href="http://www.desy.de/~znagy/Site/NLOJet++.html">
+	      NLOJet++</a>, 
+	    while the resummation is achieved with MicroJets, based
+	    partly on
+	    <a href="http://hoppet.hepforge.org/">
+	      HOPPET</a>.
+          </p>
+
+	  <p>
+            MicroJets is the code developed for the study of small-R jets.
+	  </p>
+
+	  <p>
+            It has been used in 
+	    <a href="http://arxiv.org/abs/1411.5182">
+	      arXiv:1411.5182</a>
+	    and
+	    <a href="http://arxiv.org/abs/1602.01110">
+	      arXiv:1602.01110</a>.
+          </p>
+
+	  <br>
+	  
+          <h4>Parameters</h4>
+	  <p>Proton-proton collisions.</p> 
+          <p>Center of mass energy = 7 TeV.</p>
+          <p>PDF = CT10 NLO.</p>
+	  <p>0.5 &mu;<sub>0</sub> &lt; &mu;<sub>R</sub>, &mu;<sub>F</sub> 
+	    &lt; 2 &mu;<sub>0</sub> with &mu;<sub>0</sub>=p<sub>t,max</sub>(R=1).</p>
+	  <p>Binning as used by ATLAS in 
+	    <a href="http://arxiv.org/abs/1410.8857">
+	      arXiv:1410.8857</a>.</p>
+	  <p>K is the NNLO/NLO ratio at R<sub>m</sub>=1.</p>
+
+	  <br>
+	  
+          <h4>Authors</h4>
+          <p>Mrinal Dasgupta</p>
+          <p>Fr&eacute;d&eacute;ric Dreyer</p>
+	  <p>Gavin Salam</p>
+          <p>Gr&eacute;gory Soyez</p>
+
+	  <br>
+	  
+	</div>
+	
+	<div class="col-md-8">
+	  <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    Integrated cross section as a function of R</h3>
+	  <a href="{{ url_for('plot_vR', lines = params.lines, highpt = params.highpt, ymin = params.ymin, K = params.K, narrowband = params.narrowband) }}" download="xsct_v_R.png" title="Cross section v R">
+	    <img src="{{ url_for('plot_vR', lines = params.lines, highpt = params.highpt, ymin = params.ymin, K = params.K, narrowband = params.narrowband) }}" alt="Cross section v R" width="670px" style="margin-left: -30px; margin-top: -5px">
+	  </a>
+	  
+	  <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    Inclusive jet spectrum with R = {{ params.R }}</h3>
+	  <a href="{{ url_for('plot_vpt', lines = params.lines, R = params.R, ymin = params.ymin, K = params.K, narrowband = params.narrowband) }}" download="xsct_v_pt.png" title="Cross section v pt">
+	    <img src="{{ url_for('plot_vpt', lines = params.lines, R = params.R, ymin = params.ymin, K = params.K, narrowband = params.narrowband) }}" alt="Cross section v pt" width="670px" style="margin-left: -30px; margin-top: -5px">
+	  </a>
+	</div>
+      </div>     
+    </div>
+  </body>
+  
+</html>
