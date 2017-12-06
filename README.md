@@ -1,7 +1,8 @@
 # microjets-webapp
 
-This project contains the python flask code used in MicroJet's web
-application, which is available here: http://microjets.hepforge.org/
+This project contains the python flask code used for the MicroJets web
+application, which is available here:
+[http://microjets.hepforge.org/](microjets.hepforge.org).
 
 It is an interactive application to expore the 7 TeV pp dijet
 predictions.
